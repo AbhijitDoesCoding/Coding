@@ -1,0 +1,1 @@
+{"name":"Local: atf4","url":"c:\\Users\\Abhijit Balpande\\Desktop\\Coding\\atf4.cpp","tests":[{"id":1727002001353,"input":"5 2\n4 3 5 6 2","output":"8"},{"id":1727002012763,"input":"8 3\n6 2 876 221 123 43 33 21","output":"220"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Abhijit Balpande\\Desktop\\Coding\\atf4.cpp","group":"local","local":true}

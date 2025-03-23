@@ -1,0 +1,18 @@
+ORG 0000H
+MOV 20H, #01H
+MOV 21H, #02H
+MOV 22H, #03H
+MOV 23H, #04H
+
+MOV R2, #04H
+MOV R1, #20H
+MOV R0, #30H
+
+loop:
+    MOV A, @R1
+    MOV @R0, A
+    INC R0
+    INC R1
+    DJNZ R2, loop
+
+END

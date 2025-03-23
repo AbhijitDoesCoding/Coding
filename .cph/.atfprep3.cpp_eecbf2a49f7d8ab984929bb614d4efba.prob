@@ -1,0 +1,1 @@
+{"name":"Local: atfprep3","url":"c:\\Users\\Abhijit Balpande\\Desktop\\Coding\\atfprep3.cpp","tests":[{"id":1726993612235,"input":"2\n5\n5 5 10 20 5\n3\n5 10 20","output":"Yes\nNo"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Abhijit Balpande\\Desktop\\Coding\\atfprep3.cpp","group":"local","local":true}

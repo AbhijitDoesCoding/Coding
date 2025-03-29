@@ -24,26 +24,45 @@ ll binpow(ll b,ll p, ll mod1){ll ans=1;b%=mod1;for(;p;p>>=1){if(p&1)ans=ans*b%mo
 typedef vector<ll> vi;
 typedef pair<ll,ll> pi;
 
-void solve() {
-    ll n, x; 
-    cin >> n >> x;
-    vi a(n);
-    for (ll i = 0; i < n; i++) cin >> a[i];
-    sort(all(a));
-    
-    ll count = 0;
-    ll left = 0, right = n - 1;
-    
-    while (left < right) {
-        if (a[left] + a[right] <= x) {
-            count += (right - left);
-            left++;
-        } else {
-            right--;
+void solve(){
+    ll n; cin >> n;
+    vi x(n), y(n);
+    loop(i, 0, n){
+        cin >> x[i];
+    }
+    loop(i, 0, n){
+        cin >> y[i];
+    }
+    vector<pi> v(n);
+    loop(i, 0, n){
+        v[i] = {x[i] + y[i], i};
+    }
+    sort(all(v), greater<pi>()); 
+
+    ll scoreA = 0, scoreB = 0;
+    loop(i, 0, n){
+        if(i % 2 == 0){
+            scoreA += x[v[i].ss];
+        }
+        else{
+            scoreB += y[v[i].ss];
         }
     }
-    
-    cout << count*2 << "\n";
+
+    if(scoreA == scoreB){
+        cout << "Tie\n";
+    }
+    else if(scoreA > scoreB){
+        cout << "Alice\n";
+    }
+    else{
+        cout << "Bob\n";
+    }
+    // cout << scoreA << " " << scoreB << "\n";
+    // loop(i, 0, n){
+    //     cout << x[i] << " ";
+    // }
+    // nline;
 }
 
 signed main(){

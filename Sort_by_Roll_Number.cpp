@@ -24,26 +24,18 @@ ll binpow(ll b,ll p, ll mod1){ll ans=1;b%=mod1;for(;p;p>>=1){if(p&1)ans=ans*b%mo
 typedef vector<ll> vi;
 typedef pair<ll,ll> pi;
 
-void solve() {
-    ll n, x; 
-    cin >> n >> x;
-    vi a(n);
-    for (ll i = 0; i < n; i++) cin >> a[i];
-    sort(all(a));
-    
-    ll count = 0;
-    ll left = 0, right = n - 1;
-    
-    while (left < right) {
-        if (a[left] + a[right] <= x) {
-            count += (right - left);
-            left++;
-        } else {
-            right--;
-        }
+void solve(){
+    ll n; cin >> n;
+    string s; ll x;
+    vector<pair<ll, string>> v;
+    loop(i, 0, n){
+        cin >> s >> x;
+        v.pb({x, s});
     }
-    
-    cout << count*2 << "\n";
+    sort(all(v));
+    loop(i, 0, n){
+        cout << v[i].ss << " " << v[i].ff << "\n";
+    }
 }
 
 signed main(){

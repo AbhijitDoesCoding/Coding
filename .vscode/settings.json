@@ -41,7 +41,8 @@
     "utility": "cpp",
     "type_traits": "cpp",
     "ios": "cpp",
-    "iosfwd": "cpp"
+    "iosfwd": "cpp",
+    "ranges": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

@@ -34,43 +34,33 @@ ll modinv(ll a) { return binpow(a, mod - 2); }
 typedef vector<ll> vi;
 typedef pair<ll, ll> pi;
 
+ll prefix(ll n, ll m)
+{
+    if (n < 0)
+        return 0;
+
+    ll blocks = n / m;
+    ll rem = n % m;
+
+    ll cycle = ((m % mod) * ((m - 1) % mod)) % mod;
+    cycle = cycle * modinv(2) % mod;
+
+    ll total = (blocks % mod) * cycle % mod;
+
+    ll tail = ((rem % mod) * ((rem + 1) % mod)) % mod;
+    tail = tail * modinv(2) % mod;
+
+    total = (total + tail) % mod;
+
+    return total;
+}
+
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll m;
-    cin >> m;
+    ll l, r, m;
+    cin >> l >> r >> m;
 
-    vector<vi> jobs(m + 1);
-
-    loop(i, 0, n)
-    {
-        ll a, b;
-        cin >> a >> b;
-
-        ll deadline = m - a;
-        if (deadline >= 0)
-        {
-            jobs[deadline].pb(b);
-        }
-    }
-
-    priority_queue<ll> pq;
-    ll ans = 0;
-
-    loop(day, 0, m)
-    {
-        for (auto reward : jobs[day])
-        {
-            pq.push(reward);
-        }
-
-        if (!pq.empty())
-        {
-            ans += pq.top();
-            pq.pop();
-        }
-    }
+    ll ans = (prefix(r, m) - prefix(l - 1, m) + mod) % mod;
 
     cout << ans;
     nline;
@@ -82,7 +72,7 @@ signed main()
     cin.tie(0);
 
     ll t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
         solve();
     return 0;

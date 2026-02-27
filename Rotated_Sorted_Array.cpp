@@ -25,25 +25,17 @@ ll modinv(ll a){return binpow(a,mod-2);}
 typedef vector<ll> vi; typedef pair<ll,ll> pi;
 
 void solve(){
-
-    ll n;
-    cin >> n;
-
-    ll result = n;
-
-    for (ll p = 2; p * p <= n; p++)
-    {
-        if (n % p == 0)
-        {
-            while (n % p == 0)
-                n /= p;
-            result -= result / p;
-        }
+    ll n; cin >> n;
+    vi a(n);
+    loop(i,0,n) cin >> a[i];
+    ll low = 0, high = n-1;
+    while(low < high){
+        ll mid = low + (high - low) / 2;
+        if(a[mid] > a[high]) low = mid + 1;
+        else high = mid;
     }
-    if (n > 1)
-        result -= result / n;
-
-    cout << result << "\n";
+    cout << low << "\n";
+    
 }
 
 signed main(){
@@ -51,7 +43,7 @@ signed main(){
     cin.tie(0);
 
     ll t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--) solve();
     return 0;
 }

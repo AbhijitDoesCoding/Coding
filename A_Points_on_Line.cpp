@@ -38,42 +38,19 @@ void solve()
 {
     ll n;
     cin >> n;
-    ll m;
-    cin >> m;
-
-    vector<vi> jobs(m + 1);
-
+    ll d;
+    cin >> d;
+    vi a(n);
+    loop(i, 0, n) cin >> a[i];
+    ll ans = 0;
     loop(i, 0, n)
     {
-        ll a, b;
-        cin >> a >> b;
-
-        ll deadline = m - a;
-        if (deadline >= 0)
-        {
-            jobs[deadline].pb(b);
-        }
+        auto it = upper_bound(all(a), a[i] + d);
+        ll count = it - a.begin() - i - 1;
+        if (count >= 2)
+            ans += count * (count - 1) / 2;
     }
-
-    priority_queue<ll> pq;
-    ll ans = 0;
-
-    loop(day, 0, m)
-    {
-        for (auto reward : jobs[day])
-        {
-            pq.push(reward);
-        }
-
-        if (!pq.empty())
-        {
-            ans += pq.top();
-            pq.pop();
-        }
-    }
-
-    cout << ans;
-    nline;
+    cout << ans << "\n";
 }
 
 signed main()

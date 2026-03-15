@@ -24,16 +24,15 @@ ll modinv(ll a){return binpow(a,mod-2);}
 
 typedef vector<ll> vi; typedef pair<ll,ll> pi;
 
-void f(ll curr, ll n){
-    if(curr > n) return;
-    cout << curr << " ";
-    f(curr + 1, n);
-    if(curr < n) cout << curr << " ";
-}
-
 void solve(){
-    ll n; cin >> n;    
-    f(1, n);
+    string s1, s2; cin >> s1 >> s2;
+    string t1, t2; cin >> t1 >> t2;
+    if(s2 == t2){
+        cout << "ARE Brothers";
+    }   
+    else{
+        cout << "NOT";
+    }
 }
 
 signed main(){

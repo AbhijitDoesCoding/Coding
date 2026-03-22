@@ -42,61 +42,13 @@ ll modinv(ll a) {
 #pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,fast-math")
 
 typedef vector<ll> vi;
+typedef pair<ll,ll> pi;
 
 void solve() {
-    ll n, m; 
-    cin >> n >> m;
+    ll a, b; cin >> a >> b; 
+    if(a > b) swap(a, b);
 
-    vi ss(n);
-    loop(i,0,n) cin >> ss[i];
-
-    sort(all(ss));
-
-    vector<vector<ll>> divs(n);
-
-    loop(i,0,n){
-        for(ll d = 1; d * d <= ss[i]; d++){
-            if(ss[i] % d == 0){
-                if(d <= m) divs[i].pb(d-1);
-                if(d != ss[i]/d && ss[i]/d <= m)
-                    divs[i].pb((ss[i]/d)-1);
-            }
-        }
-    }
-
-    vi freq(m, 0);
-    ll distinct = 0;
-
-    ll tail = 0, head = -1;
-    ll ans = inf;
-
-    while(tail < n){
-
-        while(head + 1 < n && distinct < m){
-            head++;
-
-            for(auto d : divs[head]){
-                if(freq[d] == 0) distinct++;
-                freq[d]++;
-            }
-        }
-
-        if(distinct == m){
-            ans = min(ans, ss[head] - ss[tail]);
-        } else {
-            break; 
-        }
-
-        for(auto d : divs[tail]){
-            freq[d]--;
-            if(freq[d] == 0) distinct--;
-        }
-
-        tail++;
-    }  
-
-    if(ans == inf) ans = -1;
-    cout << ans;
+    
     nline;
 }
 

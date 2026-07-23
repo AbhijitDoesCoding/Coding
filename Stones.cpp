@@ -44,26 +44,33 @@ ll modinv(ll a) {
 typedef vector<ll> vi;
 typedef pair<ll,ll> pi;
 
-ll n; 
+ll n,k; 
 vector<ll> v;
-ll dp[3001][3001];
-ll rec(ll l, ll r){
-    if(l > r) return 0;
-    if(l == r) return v[l];
-    if(dp[l][r] != -1) return dp[l][r];
-    ll left = v[l] - rec(l+1, r);
-    ll right = v[r] - rec(l, r-1);
-    return dp[l][r] = max(left, right);
+vector<ll> dp;
+bool winornot(ll i){
+    if(i == 0) return false;
+    if(dp[i] != -1) return dp[i];
+    for(ll j=0;j<n;j++){
+        if(v[j] <= i && !winornot(i-v[j])){
+            return dp[i] = true;
+        }
+    }
+    return dp[i] = false;
 }
 
 void solve() {
-    cin >> n; 
+    cin >> n >> k;
     v.resize(n);
-    for(ll i = 0; i < n; i++) {
-        cin >> v[i];
+    dp.resize(k + 1, -1);
+    for(ll i=0;i<n;i++) cin >> v[i];
+    for(ll i=0;i<=k;i++){
+        winornot(i);
     }
-    memset(dp, -1, sizeof(dp));
-    cout << rec(0, n-1);
+    if(winornot(k)){
+        cout << "First\n";
+    } else {
+        cout << "Second\n";
+    }   
 }
 
 signed main() {
